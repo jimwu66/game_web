@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/itest_single/itest.iml" filepath="$PROJECT_DIR$/itest_single/itest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/itest_single/itest-portal/itest-portal.iml" filepath="$PROJECT_DIR$/itest_single/itest-portal/itest-portal.iml" />
+    </modules>
+  </component>
+</project>
