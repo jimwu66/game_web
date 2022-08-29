@@ -1,0 +1,81 @@
+body {
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    display: flex;
+    color: white;
+    height: 97vh;
+    position: relative;
+}
+form {
+    width: 400px;
+    height: 200px;
+    background-color: #c19bc9;
+    padding: 40px;
+    box-shadow: 10px 10px 20px #00000080;
+    text-align: center;
+    border-radius: 12px;
+}
+
+input {
+    display: block;
+    margin: 20px auto;
+    font-size: 18px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+input[type="email"] {
+    width: 230px;
+}
+
+input[type="email"]:focus {
+    width: 260px;
+}
+
+input[type="submit"]:hover {
+    background-color: #2ECC71;
+    transition: 0.5s;
+}
+.button{
+    position: relative;
+    padding: 8px 16px;
+    background: #009579;
+    border: none;
+    ouline: none;
+    border-radius: 2px;
+    cursor: pointer;
+}
+.button__text{
+    font: bold 20px 'Quicksand',sans-serif;
+    color: #ffffff;
+    transition: all 0.2s;
+}
+.button--loading .button__text{
+    visibility: hidden;
+    opacity: 0;
+}
+.button--loading::after{
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border: 4px solid transparent;
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: button-loading-spinner 1s ease infinite;
+}
+@keyframes button-loading-spinner {
+    from {
+        transform: rotate(0turn);
+    }
+    to {
+        transform: rotate(1turn);
+    }
+}

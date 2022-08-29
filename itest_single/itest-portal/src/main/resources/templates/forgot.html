@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <title>Forgot your password?</title>
+    <link rel="stylesheet" type="text/css" href="css/forgot.css">
+</head>
+<body>
+<div id="forgotApp">
+    <form method="post" v-on:submit.prevent="resetRequest">
+        <h3>Forgot your password?</h3>
+        <h3 v-text="message" id="message"></h3>
+        <input id="email" type="email" placeholder="please input your email"
+               v-model="email" pattern="[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$">
+        <button type="submit" class="button">
+            <span class="button__text">submit</span>
+        </button>
+    </form>
+</div>
+</div>
+<script src="js/utils.js"></script>
+<script src="js/forgot.js"></script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--gcp client id
+  <meta name="google-signin-client_id" content="866120296273-i2pqtvsts4j31qup047n4e9j18523gru.apps.googleusercontent.com">
+  -->
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
+        rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0"
+        crossorigin="anonymous">
+  <!-- gcp setting
+  <script src="https://apis.google.com/js/platform.js?onload=866120296273-i2pqtvsts4j31qup047n4e9j18523gru.apps.googleusercontent.com" async defer></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script> -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <title>Login Page</title>
+</head>
+<body style="background-image: url('img/space.jpeg');">
+<div class="p-3"></div>
+<div class="container-fluid col-md-4 rounded" id="app" style="background-color:#8800ff">
+  <div class="p-2"></div>
+  <div class="p-2">
+    <img src="img/student.png" height="100"><span class="h3"> &nbspPlease login!!</span>
+  </div>
+  <form action="/login" method="post">
+<div class="input-group p-2">
+  <span class="input-group-text w-25" name="username">Username</span>
+  <input type="text" name="username" class="form-control" placeholder="username" aria-label="Username" aria-describedby="addon-wrapping">
+</div>
+  <div class="input-group p-2">
+    <span class="input-group-text w-25" name="password" >Password</span>
+    <input type="password" name="password" class="form-control" placeholder="password" aria-label="Username" aria-describedby="addon-wrapping">
+  </div>
+    <!--response message here-->
+    <div class="p-2" id="error" style="display: none">
+      <h5 class="text-danger" >username or password incorrect!</h5>
+    </div>
+    <div class="p-2" id="logout" style="display: none">
+      <h5 class="text-primary" >already logout!</h5>
+    </div>
+    <div class="p-2" id="register" style="display: none">
+      <h5 class="text-primary" >register successful!</h5>
+    </div>
+    <div class="p-2" id="reset" style="display: none">
+      <h5 class="text-primary" >reset pwd successful!</h5>
+    </div>
+    <!--response message end here-->
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <div class="p-1">
+    <a href="#" class="btn btn-lg btn-primary fab">Sign out</a>&nbsp
+    <a href="/register.html" class="btn btn-lg btn-primary fab">Register</a>
+    </div>
+    <div class="p-1">
+      <a class="btn btn-lg btn-secondary fab fa-google"
+         href="/oauth2/authorization/google">&nbsp;&nbsp; Continue with google</a>
+        <!-- th:href="@{/oauth2/authorization/google}">&nbsp;&nbsp; Continue with google</a> -->
+    </div>
+    <a href="/forgot.html" style="font-size: 18px">Forgot your password?</a>
+    <div class="p-2">
+      <button type="submit" class="btn btn-info mt-2">submit</button>
+    </div>
+  </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+        crossorigin="anonymous"></script>
+<script>
+
+  if(location.search == '?error') {
+    $('#error').addClass('d-block');
+  }
+  if(location.search == '?logout'){
+    $('#logout').addClass('d-block');
+  }
+  if(location.search == '?register'){
+    $('#register').addClass('d-block');
+  }
+  if(location.search == '?reset'){
+    $('#reset').addClass('d-block');
+  }
+</script>
+<!-- google setting
+<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+-->
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <title>reset password</title>
+    <style>
+        body{
+            font-family: Roboto;
+            color: white;
+            display: flex;
+            height: 98vh;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+        }
+        form{
+            width:400px;
+            height:300px;
+            background-color: #c19bc9;
+            padding: 40px;
+            box-shadow: 10px 10px 20px #00000080;
+            text-align: center;
+            border-radius: 12px;
+        }
+        input{
+            display: block;
+            margin: 20px auto;
+            font-size: 18px;
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        input[type="password"]:focus {
+            width:220px;
+        }
+        input[type="submit"]:hover {
+            background-color: #2ECC71;
+            transition: 0.5s;
+        }
+    </style>
+</head>
+<body >
+<div id="resetApp">
+    <form action="/reset" type="post" v-on:submit.prevent="reset">
+        <h1>Reset your password</h1>
+        <input type="password" v-model="password" placeholder="input new password"
+                  pattern="^\w{6,20}$">
+        <input type="password" v-model="confirmed" placeholder="please confirm again">
+        <div class="p-2" v-bind:class="{'d-block':hasError}" style="display: none">
+            <h4 class="text-danger" v-text="message">incorrect username/password!</h4>
+        </div>
+            <input type="submit" value="submit">
+    </form>
+</div>
+<script src="js/utils.js"></script>
+<script src="js/reset.js"></script>
+</body>
+</html>

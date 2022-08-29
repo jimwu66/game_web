@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <style>
+        body{
+            text-align: center;
+            font-size: 28px;
+        }
+        .container{
+            width: 100vw;
+            height: 98vh;
+            justify-content:center;
+            align-items: center;
+        }
+    </style>
+    <title>Third Party Login</title>
+</head>
+<body>
+<div id="oauth2User" class="container" >
+    <div id="countdown"></div>
+    <h3 v-text="message"></h3>
+</div>
+</body>
+<script src="js/utils.js"></script>
+<script src="js/oauth2.js"></script>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Snake</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <style>
+        body {
+            background-color: white;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        #game_board {
+            width: 100vmin;
+            height: 96vmin;
+            background-color: #ccc;
+            display: grid;
+            grid-template-rows: repeat(21, 1fr);
+            grid-template-columns: repeat(21, 1fr);
+        }
+
+        .snake {
+            background-color: hsl(200, 100%, 50%);
+        <!-- border: .25 vmin solid black;
+        -->
+        }
+
+        .food {
+            background-color: hsl(50, 100%, 50%);
+            border: .25vmin solid black;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+            crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="snake_data/game.js" defer type="module"></script>
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+</head>
+<body style="background-image: url('img/jungle.jpg')">
+<!--<div th:replace="index::userInfo"></div>-->
+<div class="container">
+    <div class="row justify-content-center align-content-center align-items-center" >
+        <div id="user_info" class="col-12 col-sm-12 col-md-2 col-lg-2">
+            <div class="rounded-pill" style="background-color: #8800ff;text-shadow: #FC0 1px 0 10px;">
+                <div class="m-auto p-2 text-center">
+                <strong v-text="user.nickname" id="name"></strong><br>
+                <strong v-text="user.title" style="font-weight: bold;color: blue"></strong><br>
+                <img class="rounded-circle m-auto" v-bind:src="'img/user/'+user.level+'.png'">
+                </div>
+            </div>
+            <div>
+                <a class="nav-item nav-link active"
+                   style="text-shadow: 2px 2px 4px white;font-size: 24px" href="/">Home Page</a>
+            </div>
+        </div>
+
+        <div id="game_board" class="col-12 col-sm-12 col-md-6 col-lg-6"></div>
+        <div id="score_board" class="col-12 col-sm-12 col-md-2 col-lg-2">
+            <div style="text-shadow: 2px 2px 4px white ;font-size: 24px">
+                <h1>Snake</h1>
+                <h3>Score: <span id="score" style="font-size: 30px;color: antiquewhite">0</span></h3>
+            </div>
+            <div id="sound-div">
+                <span class="sound-item" id="sound-speaker"></span>
+                <span class="sound-item" id="sound-description"></span>
+            </div>
+            <button class="play-button rounded-pill"
+                    style="font-size: 20px;background-color: #2ECC71;padding: 15px 30px;"
+                    id="reset-btn" onclick="reset()">Reset</button>
+        </div>
+    </div>
+</div>
+</div>
+<script src="js/utils.js"></script>
+<script src="js/user_info.js"></script>
+<script>
+    function reset(){
+        location.reload();
+    }
+    Swal.fire({
+        title: 'any arrow keys to start game',
+        showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+        }
+    })
+</script>
+</body>
+</html>

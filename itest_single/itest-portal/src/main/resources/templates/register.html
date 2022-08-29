@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <title>Register</title>
+</head>
+<body style="background-image: url('img/space.jpeg');">
+<div class="p-3"></div>
+<div class="container-fluid col-md-4 bg-muted border border-primary rounded" id="app"
+     style="background-color:#8800ff">
+    <div class="p-2"></div>
+    <div class="p-2">
+        <img src="img/register.png" width="60"><span class="h3"> &nbspRegister Form</span>
+    </div>
+    <form  action="/register" method="post" v-on:submit.prevent="register">
+        <div class="input-group p-2">
+            <span class="input-group-text w-25" name="username">Username</span>
+            <input type="text" name="username" v-model="username" class="form-control" placeholder="username">
+        </div>
+        <div class="input-group p-2">
+            <span class="input-group-text w-25" name="nickname">Nickname</span>
+            <input type="text" name="nickname" v-model="nickname" class="form-control" placeholder="nickname">
+        </div>
+        <div class="input-group p-2">
+            <span class="input-group-text w-25" name="email">Email</span>
+            <input type="text" name="email" v-model="email" class="form-control" placeholder="email address">
+        </div>
+        <div class="input-group p-2">
+            <span class="input-group-text w-25" name="birthday">Birthday</span>
+            <input type="date" name="birthday" v-model="birthday" class="form-control">
+        </div>
+        <div class="input-group p-2">
+            <span class="input-group-text w-25" name="password">Password</span>
+            <input type="password" name="password" v-model="password" class="form-control" placeholder="password">
+        </div>
+        <div class="input-group p-2">
+            <span class="input-group-text w-25" name="confirm">Confirm</span>
+            <input type="password" name="confirm" v-model="confirm" class="form-control" placeholder="password">
+        </div>
+        <!--response message here-->
+        <div class="p-2" v-bind:class="{'d-block':hasError}" style="display: none">
+            <h4 class="text-danger" v-text="message">incorrect username/password!</h4>
+        </div>
+        <div class="p-2">
+            <button type="submit" class="btn btn-primary mt-2">submit</button>
+        </div>
+    </form>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+<script src="js/utils.js"></script>
+<script src="js/register.js"></script>
+</body>
+</html>
