@@ -1,6 +1,5 @@
 package jimwu.itest.portal.controller;
 
-import jimwu.itest.portal.model.User;
 import jimwu.itest.portal.service.EmailSenderService;
 import jimwu.itest.portal.service.IUserService;
 import jimwu.itest.portal.service.ServiceException;
@@ -9,14 +8,9 @@ import jimwu.itest.portal.vo.RegisterVo;
 import jimwu.itest.portal.vo.ResetVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
-import org.springframework.security.oauth2.core.OAuth2AccessToken;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
-import java.util.Map;
 
 @RestController
 @Slf4j
@@ -79,6 +72,11 @@ public class SystemController {
     @GetMapping("/shop.html")
     public ModelAndView shop() {
         return new ModelAndView("shop");
+    }
+
+    @GetMapping("/question.html")
+    public ModelAndView question() {
+        return new ModelAndView("question");
     }
 
     @PostMapping("/register")
