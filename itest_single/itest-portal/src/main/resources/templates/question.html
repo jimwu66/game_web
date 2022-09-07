@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/vue-select@latest"></script>
+    <link rel="stylesheet" href="https://unpkg.com/vue-select@latest/dist/vue-select.css">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="index::user_info"></div>
+
+<div class="row justify-content-center" style="padding-top: 88px">
+    <div class="col-12 col-md-9 bg-light">
+        <div class="container">
+            <Strong class="fs-2">Leave me a message here</Strong>&nbsp&nbsp&nbsp&nbsp
+            <!--issue question pop up button start here-->
+
+            <a class="btn btn-primary mx-2"
+               onclick="$(this).next().toggle(300)">Click!</a>
+
+            <div class="col-9 col-md-9 p-3 m-2 rounded border border-primary"
+                 style="display:none;cursor: pointer;background-color: #F0F8FF" id="createQuestionApp">
+                <form method="POST" id="messageForm" v-on:submit.prevent="createQuestion">
+                        <label for="title">Title:</label>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="3~50 character"
+                               pattern="^.{3,50}$" required v-model="title">
+                        <label>Tags：</label>
+                        <v-select multiple required v-bind:options="tags" v-model="selectedTags"
+                                  placeholder="please select tag"></v-select>
+                        <!--富文本编辑器 start-->
+                        <label for="summernote">write your message</label>
+                        <textarea id="summernote" pattern="^.{3,50}$"></textarea>
+                        <!--富文本编辑器 end-->
+                    <button type="submit" class="btn btn-primary mt-3">submit</button>
+                </form>
+            </div>
+            <!--issue question pop up button end here-->
+            <!--question start here-->
+            <div id="questionApp" class="container">
+                <!-- wrap question block and comment block -->
+                <div v-for="question in questions">
+                    <!--question block start here-->
+                    <div class="row">
+                        <div class="col-9 col-md-7 p-2 m-3"
+                             style="border-radius: 10px;border: .2rem solid;box-shadow: 10px 10px #555555;">
+
+                            <div class="p-2 m-1 rounded" style="background-color: #D3D3D3">
+                                <img v-bind:src="'img/user/'+question.icon+'.png'" class="rounded-circle">
+                                <strong v-text="question.nickname"></strong>&nbsp<span v-text="question.publishTime">2022/09/09</span><br>
+                            </div>
+                            <div>
+                                <h5 class="mt-0 mb-1 text-truncate">
+                                    <span class="text-dark" v-text="question.title">
+                                        111111111111111111111111
+                                    </span>
+                                </h5>
+                            </div>
+                            <div class="font-weight-light text-truncate text-wrap text-justify mb-2"
+                                 style="height: 50px;">
+                                <p v-html="question.content">
+                                    11111111111111111111111
+                                </p>
+                            </div>
+                            <!--tag start -->
+                            <div class="row">
+                                <div class="col m-1">
+                                    <span class="badge rounded-pill bg-primary m-1"
+                                          v-for="tag in question.tags"><span v-text="tag">Java基础 &nbsp;</span></span>
+                                </div>
+                                <div class="col m-2">
+                                    <span class="badge rounded-pill bg-warning" v-show="question.status==0"
+                                          style="display: none">未回覆</span>
+                                    <span class="badge rounded-pill bg-info" v-show="question.status==1"
+                                          style="display: none">已回覆</span>
+                                    <span class="badge rounded-pill bg-success" v-show="question.status==2"
+                                          style="display: none">已解決</span>
+                                </div>
+                                <div class="col m-2">
+                                    <!-- <div class="list-inline mb-1 "> -->
+                                    <span class="badge rounded-pill bg-secondary" v-show="question.comments.length>=1"
+                                          style="display: none">
+                            <strong id="commentCount" v-text="question.comments.length"></strong> 條回覆</span>
+
+
+                                </div>
+                            </div>
+                            <!--comment start here -->
+
+                            <a class="btn btn-outline-primary m-1" data-bs-toggle="collapse"
+                               href="#collapseExample1"
+                               role="button" aria-expanded="false" aria-controls="collapseExample"
+                               v-bind:href.prevent="'#addComment'+question.id">
+                                <i class="fa fa-edit"></i>Reply
+                            </a>
+
+                            <div class="collapse" v-bind:id="'addComment'+question.id">
+                                <div class="card card-body border-light">
+                                    <form action="#" method="POST" class="needs-validation" novalidate
+                                          v-on:submit.prevent="postComment(question.id,question.status)">
+                                        <div class="form-group">
+                                            <textarea class="form-control" name="content" rows="3" required></textarea>
+                                            <div class="invalid-feedback">
+                                                评论内容不能为空！
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary my-1 float-right">Submit</button>
+                                    </form>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <!--question block end here-->
+                    <div class="row">
+                        <!--check reply start here -->
+                        <div class="col-md-7 offset-md-5">
+                            <a class="btn btn-success mx-2 mb-2"
+                               v-on:click.prevent="checkComments(question.comments.length,question.id)">Check replies</a>
+                            <div v-bind:id="'comments'+question.id"
+                                 style="display:none;cursor: pointer;border-radius: 5px;border: .1rem solid;box-shadow: 10px 10px #2ECC71;">
+                                <div v-for="comment in question.comments">
+                                    <img v-bind:src="comment.icon" style="height: 48px"
+                                         class="rounded-circle m-2"></img>
+                                    <span v-text="comment.nickname"></span>&nbsp
+                                    <span v-text="comment.publishTime"></span>
+                                    <div class="m-2 p-2 rounded" style="background-color: #6666ea;color:#ffffff">
+                                        <p v-text="comment.content" class="text-break"
+                                           style="font-size: 15px">
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!--check reply end here -->
+                    </div>
+                </div>  <!-- wrap question block and comment block end here -->
+                <!-- page navi start here -->
+                <div class="row mt-3">
+                    <div class="col-md-5 offset-md-4">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <a class="page-link" href="#" v-on:click.prevent="pageInfo.isFirstPage?loadQuestion():loadQuestion(pageInfo.prePage)">Previous</a></li>
+                                <li class="page-item" v-for="n in pageInfo.navigatepageNums">
+                                    <a class="page-link" href="#"
+                                       v-bind:class="{'bg-primary text-light':n === pageInfo.pageNum}"
+                                       v-on:click.prevent="loadQuestion(n)" v-text="n">1</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" v-on:click.prevent="pageInfo.isLastPage?loadQuestion(pageInfo.pageNum):loadQuestion(pageInfo.nextPage)">Next</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <!-- page navi end here -->
+            </div>  <!-- questionApp  end here -->
+
+        </div>
+
+    </div>
+</div>
+
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+<script src="js/utils.js"></script>
+<script src="js/user_info.js"></script>
+<script src="js/loadQuestion.js"></script>
+<script src="js/question.js"></script>
+</body>
+</html>

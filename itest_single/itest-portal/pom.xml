@@ -66,10 +66,15 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>1.4.3</version>
+        </dependency>
     </dependencies>
 
     <build>
-        <finalName>gameweb_vm_sql</finalName>
+        <finalName>gameweb_1.1_message_reply_function</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
