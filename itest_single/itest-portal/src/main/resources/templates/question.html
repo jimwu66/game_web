@@ -134,8 +134,7 @@
                             <div v-bind:id="'comments'+question.id"
                                  style="display:none;cursor: pointer;border-radius: 5px;border: .1rem solid;box-shadow: 10px 10px #2ECC71;">
                                 <div v-for="comment in question.comments">
-                                    <img v-bind:src="comment.icon" style="height: 48px"
-                                         class="rounded-circle m-2"></img>
+                                    <img v-bind:src="'img/user/'+comment.icon+'.png'" style="height: 40px" class="rounded-circle m-2">
                                     <span v-text="comment.nickname"></span>&nbsp
                                     <span v-text="comment.publishTime"></span>
                                     <div class="m-2 p-2 rounded" style="background-color: #6666ea;color:#ffffff">

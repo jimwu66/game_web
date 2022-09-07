@@ -44,7 +44,8 @@ let questionApp = new Vue({
             let textarea = $('#addComment'+questionId+' textarea');
             let content = textarea.val();
             let nickname = document.getElementById('nickname').innerText
-            let icon = document.getElementById('userIcon').src
+            let icon = userInfo.user.level
+            //let icon = document.getElementById('userIcon').src
             let form = {
                 nickname : nickname,
                 questionId : questionId,
@@ -58,9 +59,19 @@ let questionApp = new Vue({
                 data: form,
                 success:function(r){
                     if(r.code===CREATED){
-                        console.log(r)
-                        $('#addComment'+questionId+' textarea').innerText=''
-                        $('#addComment'+questionId).toggle();
+                        let comment =r.data
+                        let questions = questionApp.questions
+                        for(let i=0;i<questions.length;i++){
+                            if(questions[i].id==questionId){
+                                questions[i].comments.push(comment)
+                                if(questions[i].status==0){
+                                    questions[i].status=1
+                                }
+                                break;
+                            }
+                        }
+                        $('#addComment'+questionId+' textarea').val('')
+                        $('#addComment'+questionId).collapse('toggle');
                     }else{
                         r.message;
                     }

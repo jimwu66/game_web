@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ICommentService extends IService<Comment> {
 
-    List<Comment> postComment(CommentVo commentVo);
+    Comment postComment(CommentVo commentVo);
 
     List<Comment> getComments(Integer questionId);
 }

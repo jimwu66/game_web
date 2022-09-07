@@ -22,7 +22,7 @@ public class TagMapperTest {
         List<Tag> tags = tagMapper.getTags();
         tags.forEach(t->log.debug("tag is {}",t));
     }
-    
+
      */
 
 }

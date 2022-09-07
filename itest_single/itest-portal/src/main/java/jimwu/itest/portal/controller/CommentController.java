@@ -28,7 +28,7 @@ public class CommentController {
     private IQuestionService questionService;
 
     @PostMapping("/postComment")
-    public R<List<Comment>> postComment(@Validated CommentVo commentVo,
+    public R postComment(@Validated CommentVo commentVo,
                                         BindingResult result){
         if(result.hasErrors()){
             String message = result.getFieldError().getDefaultMessage();
@@ -38,7 +38,7 @@ public class CommentController {
         if(commentVo.getPostStatus()){
             questionService.updateQuestionStatus(Question.REPLIED,commentVo.getQuestionId());
         }
-        List<Comment> list = commentService.postComment(commentVo);
-        return R.created(list);
+        Comment comment = commentService.postComment(commentVo);
+        return R.created(comment);
     }
 }

@@ -23,7 +23,7 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
 
     @Override
     @Transactional
-    public List<Comment> postComment(CommentVo commentVo) {
+    public Comment postComment(CommentVo commentVo) {
         Comment comment = new Comment()
                 .setNickname(commentVo.getNickname())
                 .setContent(commentVo.getContent())
@@ -35,11 +35,7 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
         if(row!=1){
             throw ServiceException.failed("server busy , try later!");
         }
-        List<Comment> list = getComments(commentVo.getQuestionId());
-        if(list.isEmpty()){
-            throw ServiceException.failed("server busy , try later!");
-        }
-        return list;
+        return comment;
     }
     public List<Comment> getComments(Integer questionId){
         QueryWrapper<Comment> query = new QueryWrapper<>();
