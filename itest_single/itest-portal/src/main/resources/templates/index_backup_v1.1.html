@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>index</title>
+    <style>
+        .nav-link:hover{
+            color: blue;
+            font-weight: 900;
+        }
+    </style>
+</head>
+<body>
+<!--nav bar start here -->
+<nav class="navbar navbar-expand-md fixed-top" id="user_info" style="background-color: #00ccff" th:fragment="user_info">
+    <div class="container" id="nav_container" style="font-size: 20px">
+        <a class="navbar-brand text-primary font-weight-bold" style="text-shadow: 2px 2px 5px #ffffff;font-size: 28px"
+           href="/">Home Page</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="./tetris.html"
+                       style="text-shadow: 1px 1px 5px #ffffff;font-size: 24px">Tetris</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="./snake.html"
+                       style="text-shadow: 1px 1px 5px #ffffff;font-size: 24px">Snake</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="./question.html"
+                       style="text-shadow: 1px 1px 5px #ffffff;font-size: 24px">Contact me</a>
+                </li>
+                <!-- 2022/08/09 no plan
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Scoreboard
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="#">Game1</a></li>
+                        <li><a class="dropdown-item" href="#">Game2</a></li>
+                        <li><a class="dropdown-item" href="#">Game3</a></li>
+                    </ul>
+                </li>
+                -->
+            </ul>
+        </div>
+        <!--user information start -->
+        <!--verify-->
+        <div class="dropdown   py-1 mr-3 ">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                <img class="rounded-circle" style="height: 48px" id="userIcon" v-bind:src="'img/user/'+user.level+'.png'">
+            </button>
+            <ul class="dropdown-menu">
+                <li v-for="product in user.products">
+                    &nbsp<a v-text="product.productName" type="button"
+                            v-on:click="changeIcon(user.nickname,product.productName,product.productTitle)"></a>
+                </li>
+            </ul>
+        </div>
+        <!--verify-->
+        <div class="p-2">
+            <strong v-text="user.title" style="font-weight: bold;color: blue">五五六</strong>
+            <strong v-text="user.nickname" id="nickname">五五六</strong>
+        </div>
+        <img src="img/coin.png" style="width : 25px">
+        <div class="bordered" id="coinApp">
+            <strong v-text="user.coin"> 2502 &nbsp</strong>
+        </div>
+        <!--user information end -->
+    </div>
+</nav>
+<!--navbar end here-->
+<!--body start here-->
+
+<div class="row" id="section_row" style="padding-top: 86px">
+    <div class="col-12 col-md-9 bg-light">
+
+        <div class="container-fluid p-2" id="gameApp">
+            <!--left table start here-->
+            <span class="p-2 m-auto rounded-pill flex font-weight-bold"
+                  style="font-size: 28px;background-color: #b386c4" id="game1_title">
+                Tetris
+            </span>
+            <div class="col-12 p-2 col-md-10 text-center">
+                <table class="table table-bordered" style="background-color: #d3d3d3">
+                    <thead>
+                    <tr style="background-color: #e7db5b">
+                        <th scope="col">Ranking</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Icon</th>
+                        <th scope="col">Score</th>
+                        <th scope="col">Play time</th>
+                        <th scope="col">Duration</th>
+                    </tr>
+                    </thead>
+                    <tbody id="game1">
+                    <tr v-for="score in scores1">
+                        <th v-text="score.ranking">1</th>
+                        <td v-text="score.nickname">Mark</td>
+                        <td><img class="rounded-circle" style="height: 36px"
+                                 v-bind:src="'img/user/'+score.icon+'.png'"></td>
+                        <td v-text="score.score">Otto</td>
+                        <td v-text="score.playDate">@mdo</td>
+                        <td v-text="score.duration">@mdo</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--left table end here-->
+            <!--right table start here-->
+            <div>
+                <span class="p-2 m-auto rounded-pill flex font-weight-bold" style="font-size: 28px;background-color: #65e198" id="game2_title">
+                Snake
+                </span>
+            </div>
+            <div class="col-12 col-md-10 p-2 text-center">
+                <table class="table table-bordered" style="background-color: #d3d3d3">
+                    <thead>
+                    <tr style="background-color: #e7db5b">
+                        <th scope="col">Ranking</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Icon</th>
+                        <th scope="col">Score</th>
+                        <th scope="col">Play time</th>
+                        <th scope="col">Duration</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="score in scores2">
+                        <th v-text="score.ranking">1</th>
+                        <td v-text="score.nickname">Mark</td>
+                        <td><img class="rounded-circle" style="height: 36px"
+                                 v-bind:src="'img/user/'+score.icon+'.png'"></td>
+                        <td v-text="score.score">Otto</td>
+                        <td v-text="score.playDate">@mdo</td>
+                        <td v-text="score.duration">@mdo</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--right table end here-->
+        </div>
+        <!--body end here-->
+    </div>
+    <div class="container col-12 col-md-3 p-2" id="productApp"
+         style="border-style: inset;background-color: #FFFFBF">
+        <span class="text-success" style="font-size: 18px">Customise your icon/title</span>
+        <a href=./shop.html><button class="rounded-pill p-2">Go To Shop</button></a>
+        <hr>
+        <h4 class="text-success" style="text-shadow: 0px 0px 5px #ffffff">Recommended Icons</h4>
+        <dl v-for="product in products">
+                <span v-text="product.productName" style="background-color: #cccccc;border-radius: 5px;padding: 3px">
+                    Monster</span>&nbsp
+            <img v-bind:src="'img/shop/'+product.productName+'.png'" class="rounded-circle">
+            <img src="img/coin.png" style="width : 25px"><span v-text="product.price"></span>
+            <p>title: <span v-text="product.productTitle" style="color: blue;font-weight: bold"></span></p>
+            <dd v-text="product.description">a super devil monster</dd>
+            <button class="btn btn-success" type="submit"
+                    v-on:click="purchase(product.productName,product.productTitle,product.price)">
+                purchase
+            </button>
+        </dl>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+<script src="js/utils.js"></script>
+<script src="js/user_info.js"></script>
+<script src="js/index.js"></script>
+<script src="js/products.js"></script>
+</body>
+</html>

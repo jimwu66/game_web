@@ -1,0 +1,74 @@
+body {
+    background-image: url('../img/space.jpeg');
+}
+.game-web{
+    font-size: calc(1em + 30vmin);
+    font-weight: 900;
+    color: tomato;
+    --x-offset: -0.0625em;
+    --y-offset: 0.0625em;
+    --stroke: 0.025em;
+    --background-color: white;
+    --stroke-color: lightblue;
+
+    text-shadow: var(--x-offset) var(--y-offset) 0px var(--background-color),
+    calc(var(--x-offset) - var(--stroke)) calc(var(--y-offset) + var(--stroke))
+    0px var(--stroke-color);
+
+    -webkit-animation:colorchange 3s infinite alternate;
+}
+@-webkit-keyframes colorchange {
+
+
+    0% {color: #00ff9f;}
+    10% {color: lime;}
+    20% {color: #0abdc6;}
+    30% {color: #00b8ff;}
+    40% {color: #2980b9;}
+    50% {color: #6666ff;}
+    60% {color: #ff66ff;}
+    70% {color: #d600ff;}
+    80% {color: purple;}
+    90% {color: #711c91;}
+    100% {color: #99ccff;}
+}
+.container-fluid {
+    background-image: linear-gradient(to top left, #990099, #ff7eff);
+    padding: 20px;
+}
+.btn-light {
+    /*margin: 0px 2px 0px;*/
+    font-size: 14px;
+    font-weight: bold;
+    height: 50px;
+    text-align: center;
+    justify-content:center;
+}
+.btn-login-sign {
+    background-image: linear-gradient(to top left, #39b385, #9be15d);
+}
+.btn-login-register {
+    background-image: linear-gradient(to top left, #39b385, #9be15d);
+    margin: .7rem .7rem .7rem .7rem;
+}
+.btn-login-forgot {
+    background-image: linear-gradient(to top left, tomato, red);
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+.btn-google {
+    background-image: linear-gradient(to top left, #ffb003, #ffcb03);
+}
+.sign-row {
+    align-items: center;
+    margin: 0px 0px 8px 0px;
+    /*padding: 3px 0px 3px 0px;*/
+}
+.input-group-style{
+   margin-bottom: 8px;
+}
+.input-style {
+    border: #FFFFFF 2px solid;
+    /*padding: 3px 0px 3px 0px;*/
+}

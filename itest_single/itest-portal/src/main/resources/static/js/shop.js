@@ -78,3 +78,16 @@ let shopApp = new Vue({
         this.loadProducts();
     }
 });
+//v1.2 fixed top bar function
+document.addEventListener("scroll", function () {
+    const topBar = document.querySelector(".index_top_bar");
+    let top = document.documentElement.scrollTop;
+    console.log(top);
+    if (top > 50) {
+        topBar.style.position ="fixed";
+        topBar.style.top = "0px";
+    } else {
+        topBar.style.position ="relative";
+        topBar.style.removeProperty("top");
+    }
+});

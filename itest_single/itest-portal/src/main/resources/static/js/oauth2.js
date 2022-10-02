@@ -28,16 +28,32 @@ let oauth2User = new Vue({
             });
         },
         countDown: function () {
-            let timeleft = 2;
-            let downloadTimer = setInterval(function () {
-                if (timeleft <= 0) {
-                    clearInterval(downloadTimer);
-                    document.getElementById("countdown").innerHTML = "Finished";
+            //v1.2
+            const progressText = document.querySelector(".progress_text");
+            let progress = 20;
+
+            const loadingBar = setInterval(function () {
+                console.log(progress);
+                if (progress > 100) {
+                    clearInterval(loadingBar);
                 } else {
-                    document.getElementById("countdown").innerHTML = timeleft + " seconds remaining";
+                    console.log(`${progress}%`);
+                    progressText.textContent = `${progress}%`;
+                    progress += 10;
                 }
-                timeleft -= 0.5;
-            }, 500);
+            }, 200);
+
+            // v1.1
+            // let timeleft = 2;
+            // let downloadTimer = setInterval(function () {
+            //     if (timeleft <= 0) {
+            //         clearInterval(downloadTimer);
+            //         document.getElementById("countdown").innerHTML = "Finished";
+            //     } else {
+            //         document.getElementById("countdown").innerHTML = timeleft + " seconds remaining";
+            //     }
+            //     timeleft -= 0.5;
+            // }, 500);
         }
     },
     created:function(){
