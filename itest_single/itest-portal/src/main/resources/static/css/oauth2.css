@@ -1,0 +1,83 @@
+/*v1.1*/
+/*body{*/
+/*    text-align: center;*/
+/*    font-size: 28px;*/
+/*}*/
+/*.container{*/
+/*    width: 100vw;*/
+/*    height: 98vh;*/
+/*    justify-content:center;*/
+/*    align-items: center;*/
+/*}*/
+body {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+.container{
+    margin-bottom: 2em;
+    font-size: 2em;
+    justify-content:center;
+    align-items: center;
+}
+.progress_bar {
+    position: relative;
+    background: #aaaaaa;
+    width: 50vw;
+    height: 3em;
+    overflow: hidden;
+    /* overflow:hidden cause text gone , text need set absoulte */
+    border-radius: 10px;
+}
+.progress_fill {
+    background: linear-gradient(to left, #39b385, #9be15d);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 0px;
+    height: 3em;
+    animation-name: loading;
+    animation-timing-function: linear;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    /*讓動畫停留在最後一禎的參數*/
+}
+.progress_text {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+    position: absolute;
+    /*need to relative to the real container(progress_bar)*/
+    /* top: 1em; */
+    right: 0.5em;
+    top: 50%;
+    transform: translateY(-50%);
+    /* another way to set text vertical center by using transform */
+}
+#section_row{
+    position:relative;
+}
+@keyframes loading {
+    0% {
+        width: 0%;
+    }
+    20% {
+        width: 30%;
+    }
+    40% {
+        width: 60%;
+    }
+    60% {
+        width: 80%;
+    }
+    80% {
+        width: 90%;
+    }
+    100% {
+        width: 100%;
+    }
+}

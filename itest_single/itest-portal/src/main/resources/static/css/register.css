@@ -1,0 +1,43 @@
+body {
+    background-image: url('../img/space.jpeg');
+}
+form {
+    font-size: 14px;
+}
+.title {
+    font-size: 36px;
+    font-weight:700;
+    color: #00ff00;
+
+    --x-offset: -0.0625em;
+    --y-offset: 0.0625em;
+    --stroke: 0.025em;
+    --background-color: #6666ff;
+    --stroke-color: white;
+
+    text-shadow:
+
+            var(--x-offset)
+            var(--y-offset)
+            0px
+            var(--background-color),
+
+            calc( var(--x-offset) - var(--stroke) )
+            calc( var(--y-offset) + var(--stroke) )
+            0px
+            var(--stroke-color);
+
+}
+.container-fluid {
+    background-image: linear-gradient(to top left, #990099, #ff7eff);
+    padding: 20px;
+}
+/*
+ response message text border effect
+ */
+.response
+{
+    display: none;
+    color: #3333ff;
+    font-weight: bold;
+}

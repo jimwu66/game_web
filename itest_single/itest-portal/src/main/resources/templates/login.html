@@ -17,23 +17,22 @@
   <script src="https://apis.google.com/js/platform.js?onload=866120296273-i2pqtvsts4j31qup047n4e9j18523gru.apps.googleusercontent.com" async defer></script>
   <script src="https://apis.google.com/js/platform.js" async defer></script> -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="css/login.css" />
   <title>Login Page</title>
 </head>
-<body style="background-image: url('img/space.jpeg');">
-<div class="p-3"></div>
-<div class="container-fluid col-md-4 rounded" id="app" style="background-color:#8800ff">
-  <div class="p-2"></div>
-  <div class="p-2">
-    <img src="img/student.png" height="100"><span class="h3"> &nbspPlease login!!</span>
-  </div>
-  <form action="/login" method="post">
-<div class="input-group p-2">
-  <span class="input-group-text w-25" name="username">Username</span>
-  <input type="text" name="username" class="form-control" placeholder="username" aria-label="Username" aria-describedby="addon-wrapping">
+<body>
+<div class="text-center">
+  <span class="game-web">GAME WEB</span>
 </div>
-  <div class="input-group p-2">
-    <span class="input-group-text w-25" name="password" >Password</span>
-    <input type="password" name="password" class="form-control" placeholder="password" aria-label="Username" aria-describedby="addon-wrapping">
+<div class="container-fluid col-md-4 rounded" id="app">
+  <form action="/login" method="post">
+<div class="input-group input-group-style">
+  <span class="input-group-text w-25 input-style" name="username">Username</span>
+  <input type="text" name="username" class="form-control input-style" placeholder="username" aria-label="Username" aria-describedby="addon-wrapping">
+</div>
+  <div class="input-group input-group-style">
+    <span class="input-group-text w-25 input-style" name="password" >Password</span>
+    <input type="password" name="password" class="form-control input-style" placeholder="password" aria-label="Username" aria-describedby="addon-wrapping">
   </div>
     <!--response message here-->
     <div class="p-2" id="error" style="display: none">
@@ -50,18 +49,17 @@
     </div>
     <!--response message end here-->
     <div class="g-signin2" data-onsuccess="onSignIn"></div>
-    <div class="p-1">
-    <a href="#" class="btn btn-lg btn-primary fab">Sign out</a>&nbsp
-    <a href="/register.html" class="btn btn-lg btn-primary fab">Register</a>
+    <div class="row sign-row">
+   <!-- <a href="#" class="col-sm btn btn-lg btn-light  btn-login-sign">Sign out</a>-->
+      <button type="submit" class="col btn btn-lg btn-light  btn-login-sign">Submit</button>
+     <button type=button onclick="window.location.href='/register.html';" class="col btn btn-lg btn-light btn-login-register">Register</button>
+      <button type=button onclick="window.location.href='/forgot.html';" class="col btn btn-lg btn-light btn-login-forgot ">Reset Password</button>
+
     </div>
-    <div class="p-1">
-      <a class="btn btn-lg btn-secondary fab fa-google"
-         href="/oauth2/authorization/google">&nbsp;&nbsp; Continue with google</a>
-        <!-- th:href="@{/oauth2/authorization/google}">&nbsp;&nbsp; Continue with google</a> -->
-    </div>
-    <a href="/forgot.html" style="font-size: 18px">Forgot your password?</a>
-    <div class="p-2">
-      <button type="submit" class="btn btn-info mt-2">submit</button>
+    <div class="row sign-row">
+      <button type="button" class="btn btn-lg btn-light fab fa-google btn-google"
+              onclick="window.location.href='/oauth2/authorization/google';">&nbsp;&nbsp; Continue with google</button>
+      <!-- th:href="@{/oauth2/authorization/google}">&nbsp;&nbsp; Continue with google</a> -->
     </div>
   </form>
 </div>

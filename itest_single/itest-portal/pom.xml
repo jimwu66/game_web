@@ -74,7 +74,7 @@
     </dependencies>
 
     <build>
-        <finalName>gameweb_1.1_message_reply_function</finalName>
+        <finalName>gameweb_1.2_ui_ux_improve</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
