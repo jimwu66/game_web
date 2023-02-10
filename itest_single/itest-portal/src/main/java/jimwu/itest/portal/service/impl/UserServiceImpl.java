@@ -238,7 +238,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
     @Override
     @Transactional
-    public PurchaseVo buyProduct(String productName,String productTile, Integer price, String nickname) {
+    public PurchaseVo buyProduct(IconVo iconVo) {
+        String nickname = iconVo.getNickname();
+        Integer price = iconVo.getPrice();
+        String productName = iconVo.getProductName();
+        String productTile = iconVo.getProductTitle();
         Integer coin = userCoinService.subCoin(nickname,price);
         Boolean result = userIconService.inputUserIcon(nickname,productName,productTile);
         if(!result){

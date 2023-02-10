@@ -30,6 +30,12 @@ let shopApp = new Vue({
                     text: 'Insufficient coin(' + userCoin + ')',
                 })
             }
+            let data = {
+                productName: productName,
+                productTitle: productTitle,
+                price: price,
+                nickname: nickname
+            }
             Swal.fire({
                 title: 'Are you sure?',
                 text: 'are you sure buy\n' + productName + ' for ' + price + ' coins?',
@@ -41,13 +47,8 @@ let shopApp = new Vue({
                 if (result.isConfirmed) {
                     $.ajax({
                         url: '/v1/users/buy',
-                        method: 'GET',
-                        data: {
-                            productName: productName,
-                            productTitle: productTitle,
-                            price: price,
-                            nickname: nickname
-                        },
+                        method: 'POST',
+                        data: data,
                         success: function (r) {
                             console.log(r)
                             if (r.code == OK) {

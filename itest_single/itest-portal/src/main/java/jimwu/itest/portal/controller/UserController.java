@@ -3,15 +3,14 @@ package jimwu.itest.portal.controller;
 import jimwu.itest.portal.model.User;
 import jimwu.itest.portal.security.UserDetailsServiceImpl;
 import jimwu.itest.portal.service.IUserService;
-import jimwu.itest.portal.vo.OAuth2RegisterVo;
-import jimwu.itest.portal.vo.PurchaseVo;
-import jimwu.itest.portal.vo.R;
-import jimwu.itest.portal.vo.UserVo;
+import jimwu.itest.portal.vo.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -59,13 +58,15 @@ public class UserController {
         log.debug("oauth2 user register finish! auto redirect to home page...");
         return R.ok("User register ok!");
     }
-    @GetMapping("/buy")
-    public R buyProduct(String productName,String productTitle,Integer price,String nickname){
-        if(productName==null||price==null||nickname==null||productTitle==null){
-            return R.unprocessableEntity("data invalid!");
+    @PostMapping("/buy")
+    public R buyProduct(@Validated IconVo iconVo,
+                        BindingResult result){
+        if (result.hasErrors()) {
+            String error = result.getFieldError().getDefaultMessage();
+            return R.unprocessableEntity(error);
         }
         try {
-            PurchaseVo purchaseVo = userService.buyProduct(productName,productTitle, price, nickname);
+            PurchaseVo purchaseVo = userService.buyProduct(iconVo);
             return R.ok(purchaseVo);
         }catch (Exception e){
             return R.unprocessableEntity(e.getMessage());

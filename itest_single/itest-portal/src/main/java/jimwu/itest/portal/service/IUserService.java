@@ -25,7 +25,7 @@ public interface IUserService extends IService<User> {
 
     Boolean resetPassword(ResetVo resetVo);
 
-    PurchaseVo buyProduct(String productName, String productTitle, Integer price, String nickname);
+    PurchaseVo buyProduct(IconVo iconVo);
 
     void changeIcon(String nickname,String productName,String productTitle);
 }
